@@ -1,6 +1,6 @@
 <template>
   <div class="navbar-container">
-    <NavbarLogo />
+    <NavbarCompanyLogo />
     <UserRoutes />
     <NavbarSocials />
   </div>
@@ -9,13 +9,13 @@
 <script lang="ts">
 import { defineComponent } from "@vue/runtime-core";
 import UserRoutes from "@/controllers/UserRoutes.vue";
-import NavbarLogo from "@/components/Navbar/NavbarLogo.vue";
+import NavbarCompanyLogo from "./NavbarCompanyLogo.vue";
 import NavbarSocials from "@/components/Navbar/NavbarSocials.vue";
 export default defineComponent({
-  name: "NavbarContainer",
+  name: "NavbarParent",
   components: {
     UserRoutes,
-    NavbarLogo,
+    NavbarCompanyLogo,
     NavbarSocials,
   },
 });
@@ -26,7 +26,8 @@ export default defineComponent({
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: auto;
+  margin: 0 auto;
+  width: 95%;
   border: 1px solid black;
   height: 45px;
 }
