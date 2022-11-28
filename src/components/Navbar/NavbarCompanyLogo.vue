@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div style="width:15%;">
       <h1>Fixxo.</h1>
     </div>
   </template>

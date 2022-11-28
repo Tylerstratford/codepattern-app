@@ -24,6 +24,7 @@ export default {
   display: flex;
   justify-content: space-between;
   align-content: center;
+  width: 15%;
 }
 .navbar-icons {
   color: #222529;

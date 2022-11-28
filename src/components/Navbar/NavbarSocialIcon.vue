@@ -27,7 +27,8 @@ export default defineComponent({
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0 0.7rem;
+  /* margin: 0 0.7rem; */
+  /* margin-left: 1rem; */
   transition: all 0.2s ease;
   cursor: pointer;
   &:hover {

@@ -33,7 +33,7 @@ export default defineComponent({
 }
 .navbar-container {
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   align-items: center;
   width: 95%;
   margin: 0 auto;

@@ -25,13 +25,15 @@ export default defineComponent({
 <style lang="scss" scoped>
 .links-contianer {
   display: flex;
+  width: 25%;
+  margin: 0 auto;
   justify-content: space-between;
 }
 .nav-links {
   text-decoration: none;
   color: #222529;
   font-weight: 600;
-  padding-left: 2rem;
+  /* margin-right: 2rem; */
 
   &:hover,
   &:focus {
