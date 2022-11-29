@@ -21,18 +21,16 @@ export default defineComponent({
 <style lang="scss" scoped>
 .circle {
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  background: white;
   border-radius: 50%;
   width: 39px;
   height: 39px;
   display: flex;
   justify-content: center;
   align-items: center;
-  /* margin: 0 0.7rem; */
-  /* margin-left: 1rem; */
   transition: all 0.2s ease;
   cursor: pointer;
   &:hover {
-    transform: scale(1.1);
     .navbar-icons {
       color: #ff7373;
     }
