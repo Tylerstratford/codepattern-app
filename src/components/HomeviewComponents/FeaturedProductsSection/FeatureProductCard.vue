@@ -1,13 +1,17 @@
 <template>
   <div
     v-for="product in products"
-    :key="product.productId"
+    :key="product.ProductId"
     class="feature-card-container"
   >
     <div>
       <div class="feature-card-img-container">
         <img class="img" :src="product.imageUrl" />
-        <StandardButton class="std-button-one quick-view" :buttonText="text" />
+        <StandardButton
+          @click="showDetails(product)"
+          class="std-button-one quick-view"
+          :buttonText="text"
+        />
         <FeatureProductCardIcons class="card-icons" />
       </div>
       <div class="feature-card-text-container">
@@ -18,6 +22,14 @@
       </div>
     </div>
   </div>
+  <transition name="fade">
+    <FeatureProductCardModal
+      v-if="showModal"
+      @close="showModal = false"
+      :product="newTest"
+      class="modal"
+    />
+  </transition>
 </template>
 
 <script lang="ts">
@@ -25,23 +37,52 @@ import { defineComponent } from "vue";
 import { productItem } from "@/models/ProductModel";
 import StandardButton from "@/components/Buttons/StandardButton.vue";
 import FeatureProductCardIcons from "@/components/HomeviewComponents/FeaturedProductsSection/FeatureProductCardIcons.vue";
+import FeatureProductCardModal from "@/components/HomeviewComponents/FeaturedProductsSection/FeatureProductCardModal.vue";
 export default defineComponent({
   name: "FeatureProductCard",
   components: {
     StandardButton,
     FeatureProductCardIcons,
+    FeatureProductCardModal,
   },
   data() {
     return {
       products: productItem,
       text: "QUICK VIEW",
+      showModal: false,
+      newTest: {},
     };
+  },
+
+  methods: {
+    showDetails(product: Object) {
+      this.newTest = product;
+          this.showModal = true;
+    },
   },
 });
 </script>
 
 <style lang="scss" scoped>
-/* Define style in scss here */
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+  z-index: 999;
+}
 
 .feature-card-container {
   height: 320px;

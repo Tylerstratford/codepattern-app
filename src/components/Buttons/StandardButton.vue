@@ -35,7 +35,7 @@ requires class name: std-button-open */
 }
 
 .std-button-one {
-  background-color: #ff7373;
+  background-color: #ff737394;
   font-size: 1rem;
   font-weight: 700;
   color: white;
@@ -44,6 +44,11 @@ requires class name: std-button-open */
   width: 188px;
   height: 60px;
   cursor: pointer;
+  transition: all 0.2s ease;
+  &:hover {
+    font-size: 1.1rem;
+    background-color: #ff7373;
+  }
 }
 
 .std-button-two {
@@ -56,5 +61,11 @@ requires class name: std-button-open */
   width: 188px;
   height: 60px;
   cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    font-size: 1.1rem;
+    background-color: rgba(0, 0, 0, 0.553);
+  }
 }
 </style>
