@@ -2,18 +2,18 @@
   <div class="featured-product-container">
     <h1>Featured Products</h1>
     <div class="feature-product-cards-container">
-      <FeatureProductCard />
+      <Card />
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import FeatureProductCard from "@/components/HomeviewComponents/FeaturedProductsSection/FeatureProductCard.vue";
+import Card from "@/components/HomeviewComponents/FeaturedProductsSection/Card.vue";
 export default defineComponent({
-  name: "FeatureProductSectionParentComponent",
+  name: "ParentComponent",
   components: {
-    FeatureProductCard,
+    Card,
   },
 });
 </script>

@@ -13,7 +13,12 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 export default defineComponent({
-  name: "FeatureProductSizeComponent",
+  name: "SizeComponent",
+  data() {
+    return {
+      selected: false,
+    };
+  },
 });
 </script>
 
@@ -27,7 +32,7 @@ export default defineComponent({
   h1 {
     font-size: 1rem;
     font-weight: 600;
-    color: #23262A;
+    color: #23262a;
   }
 }
 .boxes {
@@ -44,10 +49,9 @@ export default defineComponent({
   align-items: center;
   font-weight: 500;
   cursor: pointer;
-&:hover {
+  &:hover {
     background-color: #ff7373;
     color: white;
-
-}
+  }
 }
 </style>

@@ -12,7 +12,7 @@
           class="std-button-one quick-view"
           :buttonText="text"
         />
-        <FeatureProductCardIcons class="card-icons" />
+        <CardIcons class="card-icons" />
       </div>
       <div class="feature-card-text-container">
         <p>{{ product.ProductCatgory }}</p>
@@ -23,7 +23,7 @@
     </div>
   </div>
   <transition name="fade">
-    <FeatureProductCardModal
+    <CardModal
       v-if="showModal"
       @close="showModal = false"
       :product="newTest"
@@ -36,14 +36,14 @@
 import { defineComponent } from "vue";
 import { productItem } from "@/models/ProductModel";
 import StandardButton from "@/components/Buttons/StandardButton.vue";
-import FeatureProductCardIcons from "@/components/HomeviewComponents/FeaturedProductsSection/FeatureProductCardIcons.vue";
-import FeatureProductCardModal from "@/components/HomeviewComponents/FeaturedProductsSection/FeatureProductCardModal.vue";
+import CardIcons from "@/components/HomeviewComponents/FeaturedProductsSection/CardIcons.vue";
+import CardModal from "@/components/HomeviewComponents/FeaturedProductsSection/CardModal.vue";
 export default defineComponent({
-  name: "FeatureProductCard",
+  name: "Card",
   components: {
     StandardButton,
-    FeatureProductCardIcons,
-    FeatureProductCardModal,
+    CardIcons,
+    CardModal,
   },
   data() {
     return {
@@ -57,14 +57,13 @@ export default defineComponent({
   methods: {
     showDetails(product: Object) {
       this.newTest = product;
-          this.showModal = true;
+      this.showModal = true;
     },
   },
 });
 </script>
 
 <style lang="scss" scoped>
-
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.3s ease;
@@ -82,6 +81,7 @@ export default defineComponent({
   /* bring your own prefixes */
   transform: translate(-50%, -50%);
   z-index: 999;
+  height: 90vh;
 }
 
 .feature-card-container {

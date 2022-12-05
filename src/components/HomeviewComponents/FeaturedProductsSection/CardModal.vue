@@ -1,5 +1,5 @@
 <template>
-  <div class="modal-container" @click.stop="">
+  <div class="modal-container">
     <Icon @click="closeModal" class="close-icon" icon="carbon:close" />
     <div class="details-container">
       <div class="details-img-container">
@@ -10,41 +10,49 @@
         <h3 class="margin-bottom">SKU Brand</h3>
         <p class="margin-bottom">STARS</p>
         <p class="margin-bottom">${{ product?.ProductPrice }}.00</p>
-        <p class="margin-bottom">
+        <p class="product-information">
           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorum,
           aperiam hic. Quis earum error quidem possimus ipsa doloremque repellat
           amet. Voluptates, veritatis hic. Atque eveniet ipsam, ipsa quos
-          voluptas deserunt. Molestias laboriosam iusto officiis odit libero
-          error omnis eum veniam magni quis numquam ea adipisci, repellat
-          veritatis consectetur temporibus deserunt.
         </p>
-        <FeatureProductSizeComponent style="margin-bottom: 2rem" />
-        <FeatureProductDetailsColor style="margin-bottom: 2rem" />
-        <FeatureProductCardQuantity style="margin-bottom: 2rem" />
+        <SizeComponent style="margin-bottom: 1rem" />
+        <DetailsColor style="margin-bottom: 1rem" />
+        <CardQuantity style="margin-bottom: 1rem" />
+        <StandardButton class="std-button-one btn" :buttonText="buttonText" />
       </div>
     </div>
-    <div></div>
+    <ExtraInformation />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 import { Icon } from "@iconify/vue";
-import FeatureProductSizeComponent from "@/components/HomeviewComponents/FeaturedProductsSection/FeatureProductSizeComponent.vue";
-import FeatureProductDetailsColor from "@/components/HomeviewComponents/FeaturedProductsSection/FeatureProductDetailsColor.vue";
-import FeatureProductCardQuantity from "@/components/HomeviewComponents/FeaturedProductsSection/FeatureProductCardQuantity.vue";
+import SizeComponent from "@/components/HomeviewComponents/FeaturedProductsSection/SizeComponent.vue";
+import DetailsColor from "@/components/HomeviewComponents/FeaturedProductsSection/DetailsColor.vue";
+import CardQuantity from "@/components/HomeviewComponents/FeaturedProductsSection/CardQuantity.vue";
+import StandardButton from "@/components/Buttons/StandardButton.vue";
+import ExtraInformation from "@/components/HomeviewComponents/FeaturedProductsSection/ExtraInformation.vue";
+
 export default defineComponent({
-  name: "FeatureProductCardModal",
+  name: "CardModal",
   props: {
     product: {
       type: Object,
     },
   },
+  data() {
+    return {
+      buttonText: "Add to cart",
+    };
+  },
   components: {
     Icon,
-    FeatureProductSizeComponent,
-    FeatureProductDetailsColor,
-    FeatureProductCardQuantity,
+    SizeComponent,
+    DetailsColor,
+    CardQuantity,
+    StandardButton,
+    ExtraInformation,
   },
 
   methods: {
@@ -56,17 +64,27 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+.btn {
+  margin-top: 1rem;
+  height: 42px;
+  width: 17%;
+  transition: all 0.2s ease;
+  &:hover {
+    font-size: 1.05rem;
+    background-color: #ff7373;
+  }
+}
 .margin-bottom {
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 .details-container {
   display: flex;
-  height: 100%;
+  height: 65%;
   justify-content: space-between;
 
   .details-img-container {
     width: 45%;
-    height: 65%;
+    height: 100%;
     overflow: hidden;
     .img {
       width: 100%;
@@ -79,11 +97,17 @@ export default defineComponent({
 .details-information-container {
   /* border: 1px solid purple; */
   width: 50%;
+
+  .product-information {
+    max-height: 100px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+  }
 }
 
 .modal-container {
   width: 75%;
-  height: 85vh;
+  /* height: 150%; */
   background: rgba(255, 255, 255, 0.95);
   padding: 1rem;
 }

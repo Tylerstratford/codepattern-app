@@ -8,17 +8,21 @@
       <div class="qnt-counter">{{ counter }}</div>
       <div @click="IncreaseCount" class="plus-minus">+</div>
     </div>
+
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 export default defineComponent({
-  name: "FeatureProductCardQuantity",
+  name: "CardQuantity",
+  components: {
+  },
 
   data() {
     return {
       counter: 0,
+
     };
   },
   methods: {
@@ -35,6 +39,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+
 .box-container {
   display: flex;
   width: 300px;
@@ -65,6 +70,7 @@ export default defineComponent({
     transition: all 0.2s ease;
     &:hover {
       font-size: 1.9rem;
+      background: rgb(248, 245, 245);
     }
   }
   .qnt-counter {
