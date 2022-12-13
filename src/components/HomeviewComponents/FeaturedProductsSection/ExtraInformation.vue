@@ -1,9 +1,23 @@
 <template>
   <div class="details">
-    <h1 @click="showDetails(descriptionText)" :class="Description ? 'selected' : ''">Description</h1>
-    <h1 @click="showDetails(additionalText)">Additional</h1>
-    <h1 @click="showDetails(shoppingText)">Shopping & Returns</h1>
-    <h1 @click="showDetails(reviewsText)">Shopping & Returns</h1>
+    <h1
+      @click="showDetails(descriptionText)"
+      :class="Description ? 'selected' : ''"
+    >
+      Description
+    </h1>
+    <h1
+      @click="showDetails(additionalText)"
+      :class="Additional ? 'selected' : ''"
+    >
+      Additional
+    </h1>
+    <h1 @click="showDetails(shoppingText)" :class="Shopping ? 'selected' : ''">
+      Shopping & Returns
+    </h1>
+    <h1 @click="showDetails(reviewsText)" :class="Reviews ? 'selected' : ''">
+      Shopping & Returns
+    </h1>
   </div>
   <div>
     <p v-if="Description">{{ descriptionText }}</p>
@@ -28,7 +42,7 @@ export default defineComponent({
       shoppingText: "Shopping",
       reviewsText: "Reviews",
     };
-    },
+  },
 
   methods: {
     showDetails(details: string) {
@@ -85,10 +99,10 @@ export default defineComponent({
       border-bottom: 1px solid #ff7373;
     }
   }
-}
 
-.selected {
+  .selected {
     border-bottom: 1px solid #ff7373;
-
+    color: #ff7373;
+  }
 }
 </style>

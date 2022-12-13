@@ -30,6 +30,7 @@
       class="modal"
     />
   </transition>
+
 </template>
 
 <script lang="ts">
