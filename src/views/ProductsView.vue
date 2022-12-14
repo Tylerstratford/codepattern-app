@@ -9,7 +9,7 @@
       <div class="column">
         <label for="name">Name</label>
         <input
-          name="name"
+          v-model="newProduct.productName"
           class="input-medium"
           type="text"
           placeholder="Enter product name"
@@ -17,38 +17,38 @@
       </div>
       <div class="column select">
         <label>Category</label>
-        <select v-model="Category">
+        <select v-model="newProduct.categoryName">
           <option
-            class="select-options"
             v-for="category in Categories"
             :key="category.id"
             :value="category.category"
+            name="category"
           >
             {{ category.category }}
           </option>
         </select>
       </div>
-      <div v-if="Category === 'Dress'" class="column select">
+      <div v-if="newProduct.categoryName === 'Dress'" class="column select">
         <label>Occasion</label>
-        <select v-model="Occasion">
+        <select v-model="newProduct.occasionName">
           <option
-            class="select-options"
             v-for="occasion in Occasions"
             :key="occasion.id"
             :value="occasion.occasion"
+            name="occasion"
           >
             {{ occasion.occasion }}
           </option>
         </select>
       </div>
-      <div v-if="Category === 'Jacket'" class="column select">
+      <div v-if="newProduct.categoryName === 'Jacket'" class="column select">
         <label>Season</label>
-        <select v-model="Season">
+        <select v-model="newProduct.seasonName">
           <option
-            class="select-options"
             v-for="season in Seasons"
             :key="season.Id"
             :value="season.Season"
+            name="season"
           >
             {{ season.Season }}
           </option>
@@ -57,9 +57,10 @@
       <div class="column">
         <label>Description</label>
         <textarea
+          v-model="newProduct.descriptionText"
           placeholder="Enter a description"
           class="text-area"
-          name=""
+          name="description"
           id=""
           cols="30"
           rows="5"
@@ -67,43 +68,56 @@
       </div>
       <div class="column">
         <label>Image Url</label>
-        <input class="input-medium" placeholder="Enter Url" />
+        <input
+          v-model="imgUrl"
+          type="text"
+          name="imgUrl"
+          class="input-medium"
+          placeholder="Enter Url"
+        />
       </div>
 
       <div class="flex price-container">
         <div class="column">
           <label>Price</label>
-          <input placeholder="Enter price" />
+          <input name="price" placeholder="Enter price" />
         </div>
-        <div class="column">
+        <div class="column select">
           <label>On sale?</label>
-          <div class="sale-container">
-            <label>Yes</label>
-            <input type="checkbox" class="checkbox" />
-            <label>No</label>
-            <input type="checkbox" class="checkbox" />
-          </div>
-          <div></div>
+          <select v-model="OnSale">
+            <option
+              name="onSale"
+              v-for="sale in onSale"
+              :key="sale.id"
+              :value="sale.isOnSale"
+            >
+              {{ sale.value }}
+            </option>
+          </select>
         </div>
-        <div class="column">
+        <div v-if="OnSale" class="column">
           <label class="column">Sale Procent</label>
-          <input placeholder="Enter procent" />
+          <input name="procent" placeholder="Enter procent" />
         </div>
       </div>
       <div class="flex">
         <div class="column short-inputs">
           <label>Size</label>
-          <input placeholder="Enter size" />
+          <input name="size" placeholder="Enter size" />
         </div>
         <div class="column short-inputs">
           <label>Color</label>
-          <input placeholder="Enter color" />
+          <input name="color" placeholder="Enter color" />
         </div>
       </div>
-      <StandardButton class="std-button-two" :button-text="btnText" />
+      <StandardButton
+        @click="testBtn"
+        class="std-button-two"
+        :button-text="btnText"
+      />
     </form>
     <div class="image-container">
-      <h1>Image</h1>
+      <img name="img" class="img" :src="`${imgUrl}`" />
     </div>
   </div>
 </template>
@@ -114,11 +128,13 @@ import StandardButton from "@/components/Buttons/StandardButton.vue";
 import { Seasons } from "@/models/Seasons";
 import { Categories } from "@/models/CategoriesModel";
 import { Occasions } from "@/models/Occasions";
+import { isOnSale } from "@/models/Selected";
 export default defineComponent({
   name: "ProductsView",
   components: {
     StandardButton,
   },
+
   data() {
     return {
       btnText: "Submit",
@@ -128,10 +144,33 @@ export default defineComponent({
       Category: null,
       Occasions: Occasions,
       Occasion: null,
-      newProduct: Object,
+      newProduct: {
+        productName: "",
+        categoryName: "",
+        occasionName: "",
+        seasonName: "",
+        descriptionText: "",
+        ImgUrlString: "",
+        priceAmount: "",
+        onSale: "",
+      },
       newDress: {},
       newJacket: {},
+      onSale: isOnSale,
+      OnSale: null,
+      imgUrl: "",
     };
+  },
+  watch: {
+    imgUrl: function (newValue, oldValue) {
+      this.imgUrl = newValue;
+    },
+  },
+
+  methods: {
+    testBtn() {
+      console.log(this.newProduct);
+    },
   },
 });
 </script>
@@ -147,19 +186,29 @@ export default defineComponent({
   width: 95%;
   margin: 0 auto;
   margin-top: 1rem;
-  height: auto;
+  height: 75vh;
   display: flex;
   justify-content: space-between;
 
   form {
     width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 
   .image-container {
     width: 50%;
+    height: 100%;
+    /* border: 1px solid black; */
     display: flex;
     justify-content: center;
     align-items: center;
+    .img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
   }
 
   .flex {
@@ -232,5 +281,9 @@ export default defineComponent({
 
 li {
   list-style-type: none;
+}
+
+select {
+  cursor: pointer;
 }
 </style>
