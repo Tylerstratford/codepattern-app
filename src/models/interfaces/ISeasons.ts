@@ -1,4 +1,4 @@
-export interface Seasons {
-    Id: Number,
-    Season: String
+export interface SeasonsInterface {
+    Id: number,
+    Season: string
 }

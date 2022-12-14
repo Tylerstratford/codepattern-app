@@ -5,45 +5,53 @@
   </div>
 
   <div class="form-container">
-    <form>
+    <form @submit.prevent>
       <div class="column">
-        <label>Name</label>
+        <label for="name">Name</label>
         <input
+          name="name"
           class="input-medium"
           type="text"
           placeholder="Enter product name"
         />
       </div>
-      <div>
-        <label>Category</label>
-        <div class="category-checkbox">
-          <div class="column">
-            <label>Dress</label>
-            <input type="checkbox" class="checkbox" />
-          </div>
-          <div class="column">
-            <label>Jacket</label>
-            <input type="checkbox" class="checkbox" />
-          </div>
-        </div>
-      </div>
       <div class="column select">
-        <label>Occasion</label>
-        <select>
-          <option>Casual</option>
-          <option>Business Casual</option>
-          <option>Semi-Formal</option>
-          <option>Formal</option>
-          <option>Cocktail</option>
+        <label>Category</label>
+        <select v-model="Category">
+          <option
+            class="select-options"
+            v-for="category in Categories"
+            :key="category.id"
+            :value="category.category"
+          >
+            {{ category.category }}
+          </option>
         </select>
       </div>
-      <div class="column select">
+      <div v-if="Category === 'Dress'" class="column select">
+        <label>Occasion</label>
+        <select v-model="Occasion">
+          <option
+            class="select-options"
+            v-for="occasion in Occasions"
+            :key="occasion.id"
+            :value="occasion.occasion"
+          >
+            {{ occasion.occasion }}
+          </option>
+        </select>
+      </div>
+      <div v-if="Category === 'Jacket'" class="column select">
         <label>Season</label>
-        <select>
-          <option>Summer</option>
-          <option>Autumn</option>
-          <option>Winter</option>
-          <option>Spring</option>
+        <select v-model="Season">
+          <option
+            class="select-options"
+            v-for="season in Seasons"
+            :key="season.Id"
+            :value="season.Season"
+          >
+            {{ season.Season }}
+          </option>
         </select>
       </div>
       <div class="column">
@@ -73,7 +81,7 @@
             <label>Yes</label>
             <input type="checkbox" class="checkbox" />
             <label>No</label>
-            <input type="checkbox" class="checkbox"/>
+            <input type="checkbox" class="checkbox" />
           </div>
           <div></div>
         </div>
@@ -84,11 +92,11 @@
       </div>
       <div class="flex">
         <div class="column short-inputs">
-          <lable>Size</lable>
+          <label>Size</label>
           <input placeholder="Enter size" />
         </div>
         <div class="column short-inputs">
-          <lable>Color</lable>
+          <label>Color</label>
           <input placeholder="Enter color" />
         </div>
       </div>
@@ -103,6 +111,9 @@
 <script lang="ts">
 import { defineComponent } from "@vue/runtime-core";
 import StandardButton from "@/components/Buttons/StandardButton.vue";
+import { Seasons } from "@/models/Seasons";
+import { Categories } from "@/models/CategoriesModel";
+import { Occasions } from "@/models/Occasions";
 export default defineComponent({
   name: "ProductsView",
   components: {
@@ -111,10 +122,17 @@ export default defineComponent({
   data() {
     return {
       btnText: "Submit",
+      Seasons: Seasons,
+      Season: null,
+      Categories: Categories,
+      Category: null,
+      Occasions: Occasions,
+      Occasion: null,
+      newProduct: Object,
+      newDress: {},
+      newJacket: {},
     };
   },
-  created() {
-  }
 });
 </script>
 
@@ -181,7 +199,7 @@ export default defineComponent({
 }
 
 .select {
-  width: 10%;
+  width: 20%;
   margin-bottom: 1rem;
 }
 

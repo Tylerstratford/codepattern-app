@@ -1,4 +1,4 @@
-export interface Occasions {
-    Id: Number,
-    Occasion: String
+export interface OccasionsInterface {
+    id: number,
+    occasion: string
 }

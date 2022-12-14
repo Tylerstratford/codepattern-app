@@ -1,5 +1,5 @@
-import { Seasons } from "./interfaces/ISeasons"
-export const Season: Array<Seasons> = [
+import { SeasonsInterface } from "./interfaces/ISeasons"
+export const Seasons: Array<SeasonsInterface> = [
     {
         Id: 1,
         Season: "Winter"

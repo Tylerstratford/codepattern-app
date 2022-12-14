@@ -1,19 +1,19 @@
-import { Occasions } from "./interfaces/IOccasion";
-export const occasions: Array<Occasions>= [
+import { OccasionsInterface } from "./interfaces/IOccasion";
+export const Occasions: Array<OccasionsInterface>= [
   {
-    Id: 1,
-    Occasion: "Casual",
+    id: 1,
+    occasion: "Casual",
   },
   {
-    Id: 2,
-    Occasion: "Business Casual",
+    id: 2,
+    occasion: "Business Casual",
   },
   {
-    Id: 3,
-    Occasion: "Formal",
+    id: 3,
+    occasion: "Formal",
   },
   {
-    Id: 4,
-    Occasion: "Cocktail"
+    id: 4,
+    occasion: "Cocktail"
   },
 ];
