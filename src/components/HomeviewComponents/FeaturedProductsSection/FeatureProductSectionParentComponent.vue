@@ -1,8 +1,12 @@
 <template>
   <div class="featured-product-container">
-    <h1>Featured Products</h1>
+    <h1>Featured Dresses</h1>
     <div class="feature-product-cards-container">
-      <Card />
+      <Card :product="Dresses"/>
+    </div>'
+    <h1>Featured Jackets</h1>
+    <div class="feature-product-cards-container">
+      <CardJackets />
     </div>
   </div>
 </template>
@@ -10,16 +14,24 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import Card from "@/components/HomeviewComponents/FeaturedProductsSection/Card.vue";
+import CardJackets from "@/components/HomeviewComponents/FeaturedProductsSection/CardJackets.vue";
+import { Dress } from "@/models/interfaces/IDress";
+
 export default defineComponent({
   name: "ParentComponent",
   components: {
     Card,
+    CardJackets
   },
+  data() {
+    return {
+      Dresses: [] as Array<Dress>
+    }
+  }
 });
 </script>
 
 <style lang="scss" scoped>
-/* Define style in scss here */
 .featured-product-container {
   height: 750px;
   width: 1110px;

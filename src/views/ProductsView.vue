@@ -103,7 +103,6 @@
 <script lang="ts">
 import { defineComponent } from "@vue/runtime-core";
 import StandardButton from "@/components/Buttons/StandardButton.vue";
-
 export default defineComponent({
   name: "ProductsView",
   components: {
@@ -114,6 +113,8 @@ export default defineComponent({
       btnText: "Submit",
     };
   },
+  created() {
+  }
 });
 </script>
 

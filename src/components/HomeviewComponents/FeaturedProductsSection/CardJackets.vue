@@ -1,25 +1,24 @@
 <template>
   <div
-    v-for="dress in Dresses"
-    :key="dress.id"
-    class="feature-card-container" 
+    v-for="jacket in Jackets"
+    :key="jacket.id"
+    class="feature-card-container"
   >
     <div>
       <div class="feature-card-img-container">
-        <img class="img" :src="dress.imageUrl" />
+        <img class="img" :src="jacket.imageUrl" />
         <StandardButton
-          @click="showDetails(dress)"
+          @click="showDetails(jacket)"
           class="std-button-one quick-view"
           :buttonText="text"
-          :product="Dresses"
         />
         <CardIcons class="card-icons" />
       </div>
       <div class="feature-card-text-container">
-        <p>{{ dress.category }}</p>
-        <h2>{{ dress.name }}</h2>
+        <p>{{ jacket.category }}</p>
+        <h2>{{ jacket.name }}</h2>
         <div>Stars</div>
-        <h3>${{ dress.price }}.00</h3>
+        <h3>${{ jacket.price }}.00</h3>
       </div>
     </div>
   </div>
@@ -27,11 +26,10 @@
     <CardModal
       v-if="showModal"
       @close="showModal = false"
-      :product="modal"
+      :product="newTest"
       class="modal"
     />
   </transition>
-
 </template>
 
 <script lang="ts">
@@ -40,7 +38,7 @@ import StandardButton from "@/components/Buttons/StandardButton.vue";
 import CardIcons from "@/components/HomeviewComponents/FeaturedProductsSection/CardIcons.vue";
 import CardModal from "@/components/HomeviewComponents/FeaturedProductsSection/CardModal.vue";
 import DressService from "@/Services/DressService";
-import { Dress } from "@/models/interfaces/IDress";
+import { Jacket } from "@/models/interfaces/IJacket";
 export default defineComponent({
   name: "Card",
   components: {
@@ -49,33 +47,30 @@ export default defineComponent({
     CardModal,
   },
   props: {
-    product: {
-      type: Object
-    }
-
-},
+    Dress: Object,
+  },
   data() {
     return {
       text: "QUICK VIEW",
       showModal: false,
-      modal: {},
-      Dresses: [] as Array<Dress>
+      newTest: {},
+      Jackets: [] as Array<Jacket>,
     };
   },
   created() {
-    DressService.getProducts("/GetDress")
-      .then(response => {
-        this.Dresses = response.data
-        console.log(response.data)
+    DressService.getProducts("/GetJacket")
+      .then((response) => {
+        this.Jackets = response.data;
+        console.log(response.data);
       })
-      .catch(error => {
-  console.log(error)
-})
+      .catch((error) => {
+        console.log(error);
+      });
   },
 
   methods: {
     showDetails(dress: Object) {
-      this.modal = dress;
+      this.newTest = dress;
       this.showModal = true;
     },
   },

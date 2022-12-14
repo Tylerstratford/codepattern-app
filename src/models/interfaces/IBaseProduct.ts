@@ -1,11 +1,14 @@
 export interface BaseProduct {
-  Id: Number;
-  Name: String;
-  Description: String;
-  Category: String;
-  Price: Number;
-  ImgUrl: String;
-  IsOnSale: Boolean;
-  SaleProcent: Number;
-  SalePrice: Number;
+  id: number;
+  occasions: string,
+  name: string;
+  description: string;
+  category: string;
+  price: number;
+  imageUrl: string;
+  isOnSale: boolean;
+  saleProcent: number;
+  salePrice: number;
+  size: string,
+  color: string,
 }
