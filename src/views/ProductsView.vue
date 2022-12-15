@@ -5,7 +5,7 @@
   </div>
 
   <div class="form-container">
-    <form @submit.prevent>
+    <form ref="form" @submit.prevent="onSubmit">
       <div class="column">
         <label for="name">Name</label>
         <input
@@ -69,7 +69,7 @@
       <div class="column">
         <label>Image Url</label>
         <input
-          v-model="imgUrl"
+          v-model="newProduct.ImgUrlString"
           type="text"
           name="imgUrl"
           class="input-medium"
@@ -79,12 +79,16 @@
 
       <div class="flex price-container">
         <div class="column">
-          <label>Price</label>
-          <input name="price" placeholder="Enter price" />
+          <label>Price (number)</label>
+          <input
+            v-model="newProduct.priceAmount"
+            name="price"
+            placeholder="Enter price"
+          />
         </div>
         <div class="column select">
           <label>On sale?</label>
-          <select v-model="OnSale">
+          <select v-model="newProduct.onSale">
             <option
               name="onSale"
               v-for="sale in onSale"
@@ -95,29 +99,52 @@
             </option>
           </select>
         </div>
-        <div v-if="OnSale" class="column">
-          <label class="column">Sale Procent</label>
-          <input name="procent" placeholder="Enter procent" />
+        <div v-if="newProduct.onSale" class="column">
+          <label class="column">Sale Procent (number)</label>
+          <input
+            v-model="newProduct.saleProcent"
+            name="procent"
+            placeholder="Enter procent"
+          />
         </div>
       </div>
       <div class="flex">
         <div class="column short-inputs">
           <label>Size</label>
-          <input name="size" placeholder="Enter size" />
+          <input
+            v-model="newProduct.size"
+            name="size"
+            placeholder="Enter any size"
+          />
         </div>
         <div class="column short-inputs">
           <label>Color</label>
-          <input name="color" placeholder="Enter color" />
+          <input
+            v-model="newProduct.color"
+            name="color"
+            placeholder="Enter color"
+          />
         </div>
       </div>
       <StandardButton
-        @click="testBtn"
+        type="submit"
         class="std-button-two"
         :button-text="btnText"
       />
     </form>
     <div class="image-container">
-      <img name="img" class="img" :src="`${imgUrl}`" />
+      <img
+        v-if="newProduct.ImgUrlString"
+        name="img"
+        class="img"
+        :src="`${newProduct.ImgUrlString}`"
+      />
+      <img
+        v-if="newProduct.ImgUrlString === ''"
+        name="img"
+        class="img"
+        :src="`${placeHolderImgUrl}`"
+      />
     </div>
   </div>
 </template>
@@ -129,6 +156,9 @@ import { Seasons } from "@/models/Seasons";
 import { Categories } from "@/models/CategoriesModel";
 import { Occasions } from "@/models/Occasions";
 import { isOnSale } from "@/models/Selected";
+import { reactive, toRaw } from "@vue/reactivity";
+import { dressModel } from "@/models/DressModel";
+import axios from "axios";
 export default defineComponent({
   name: "ProductsView",
   components: {
@@ -151,25 +181,100 @@ export default defineComponent({
         seasonName: "",
         descriptionText: "",
         ImgUrlString: "",
-        priceAmount: "",
-        onSale: "",
+        priceAmount: 0,
+        onSale: false,
+        saleProcent: 0,
+        size: "",
+        color: "",
       },
-      newDress: {},
       newJacket: {},
       onSale: isOnSale,
       OnSale: null,
       imgUrl: "",
+      placeHolderImgUrl:
+        "https://i.pinimg.com/originals/86/c0/8b/86c08b1adc64b6a3b2a0476ffc15ff3b.jpg",
+      dressProduct: dressModel,
     };
-  },
-  watch: {
-    imgUrl: function (newValue, oldValue) {
-      this.imgUrl = newValue;
-    },
   },
 
   methods: {
-    testBtn() {
-      console.log(this.newProduct);
+    onSubmit() {
+      if (this.newProduct.categoryName === "Dress") {
+        const newDress = {
+          name: this.newProduct.productName,
+          description: this.newProduct.descriptionText,
+          category: this.newProduct.categoryName,
+          price: this.newProduct.priceAmount,
+          imageUrl: this.newProduct.ImgUrlString,
+          isOnSale: this.newProduct.onSale,
+          saleProcent: this.newProduct.saleProcent,
+          occasions: this.newProduct.occasionName,
+          size: this.newProduct.size,
+          color: this.newProduct.color,
+        };
+        axios
+          .post(
+            "https://localhost:7187/api/CreateDress",
+            JSON.stringify(newDress),
+            {
+              headers: {
+                "Content-Type": "application/json",
+              },
+            }
+          )
+          .then((response) => {
+            console.log(response);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+
+      if (this.newProduct.categoryName === "Jacket") {
+        const newJacket = {
+          name: this.newProduct.productName,
+          description: this.newProduct.descriptionText,
+          category: this.newProduct.categoryName,
+          price: this.newProduct.priceAmount,
+          imageUrl: this.newProduct.ImgUrlString,
+          isOnSale: this.newProduct.onSale,
+          saleProcent: this.newProduct.saleProcent,
+          season: this.newProduct.seasonName,
+          size: this.newProduct.size,
+          color: this.newProduct.color,
+        };
+
+        axios
+          .post(
+            "https://localhost:7187/api/CreateJacket",
+            JSON.stringify(newJacket),
+            {
+              headers: {
+                "Content-Type": "application/json",
+              },
+            }
+          )
+          .then((response) => {
+            console.log(response);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+
+      this.newProduct = {
+        productName: "",
+        categoryName: "",
+        occasionName: "",
+        seasonName: "",
+        descriptionText: "",
+        ImgUrlString: "",
+        priceAmount: 0,
+        onSale: false,
+        saleProcent: 0,
+        size: "",
+        color: "",
+      };
     },
   },
 });

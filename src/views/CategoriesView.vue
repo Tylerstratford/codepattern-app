@@ -1,7 +1,7 @@
 <template>
   <div class="categories-container">
     <div class="left">
-      <h1>Shoes</h1>
+      <h1>Jackets</h1>
     </div>
     <div class="right">
       <h1>Dresses</h1>

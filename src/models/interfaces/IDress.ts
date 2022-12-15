@@ -1,5 +1,5 @@
-import { BaseProduct } from "@/models/interfaces/IBaseProduct"
+import { BaseAttributes } from "./IBaseAttributes"
 
-export interface Dress extends BaseProduct {
+export interface Dress extends BaseAttributes {
 occasions: string
 }
