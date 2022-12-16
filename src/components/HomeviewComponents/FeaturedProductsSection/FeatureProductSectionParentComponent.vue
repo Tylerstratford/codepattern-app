@@ -2,8 +2,9 @@
   <div class="featured-product-container">
     <h1>Featured Dresses</h1>
     <div class="feature-product-cards-container">
-      <Card :product="Dresses"/>
-    </div>'
+      <CardDress />
+    </div>
+    '
     <h1>Featured Jackets</h1>
     <div class="feature-product-cards-container">
       <CardJackets />
@@ -13,21 +14,20 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import Card from "@/components/HomeviewComponents/FeaturedProductsSection/Card.vue";
+import CardDress from "@/components/HomeviewComponents/FeaturedProductsSection/CardDress.vue";
 import CardJackets from "@/components/HomeviewComponents/FeaturedProductsSection/CardJackets.vue";
 import { Dress } from "@/models/interfaces/IDress";
 
 export default defineComponent({
   name: "ParentComponent",
   components: {
-    Card,
-    CardJackets
+    CardDress,
+    CardJackets,
   },
   data() {
     return {
-      Dresses: [] as Array<Dress>
-    }
-  }
+    };
+  },
 });
 </script>
 
@@ -37,7 +37,6 @@ export default defineComponent({
   width: 1110px;
   margin: 0 auto;
   margin-top: 3%;
-
 
   h1 {
     font-size: 1.25rem;

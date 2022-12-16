@@ -1,9 +1,11 @@
+<!-- SRP -- This component is almost identical to CardJackets,
+  however I felt that this was okay to keep within the lines of SRP
+  This component is responsible for the design and display of dresses
+If other information was to be displayed on jackets,
+then one could edit just this component -->
+
 <template>
-  <div
-    v-for="dress in Dresses"
-    :key="dress.id"
-    class="feature-card-container" 
-  >
+  <div v-for="dress in Dresses" :key="dress.id" class="feature-card-container">
     <div>
       <div class="feature-card-img-container">
         <img class="img" :src="dress.imageUrl" />
@@ -18,8 +20,12 @@
       <div class="feature-card-text-container">
         <p>{{ dress.category }}</p>
         <h2>{{ dress.name }}</h2>
-        <div>Stars</div>
-        <h3>${{ dress.price }}.00</h3>
+        <div class="display-prices">
+          <h3 :class="{ 'strike-through': dress.isOnSale }">
+            ${{ dress.price }}.00
+          </h3>
+          <h3 v-if="dress.isOnSale">${{ dress.salePrice }}.00</h3>
+        </div>
       </div>
     </div>
   </div>
@@ -31,7 +37,6 @@
       class="modal"
     />
   </transition>
-
 </template>
 
 <script lang="ts">
@@ -50,27 +55,26 @@ export default defineComponent({
   },
   props: {
     product: {
-      type: Object
-    }
-
-},
+      type: Object,
+    },
+  },
   data() {
     return {
       text: "QUICK VIEW",
       showModal: false,
       modal: {},
-      Dresses: [] as Array<Dress>
+      Dresses: [] as Array<Dress>,
     };
   },
   created() {
     DressService.getProducts("/GetDress")
-      .then(response => {
-        this.Dresses = response.data
-        console.log(response.data)
+      .then((response) => {
+        this.Dresses = response.data;
+        console.log(response.data);
       })
-      .catch(error => {
-  console.log(error)
-})
+      .catch((error) => {
+        console.log(error);
+      });
   },
 
   methods: {
@@ -97,7 +101,6 @@ export default defineComponent({
   position: fixed;
   top: 50%;
   left: 50%;
-  /* bring your own prefixes */
   transform: translate(-50%, -50%);
   z-index: 999;
   height: 90vh;
@@ -175,6 +178,19 @@ export default defineComponent({
       font-size: 1.125rem;
       font-weight: 700;
     }
+  }
+
+  .display-prices {
+    display: flex;
+    justify-content: space-between;
+    justify-content: center;
+    h3 {
+      margin-right: 0.5rem;
+    }
+  }
+
+  .strike-through {
+    text-decoration: line-through;
   }
 }
 </style>

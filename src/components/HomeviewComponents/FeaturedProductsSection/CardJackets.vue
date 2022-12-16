@@ -1,3 +1,8 @@
+<!-- SRP -- This component is almost identical to CardJackets,
+  however I felt that this was okay to keep within the lines of SRP. 
+This component is responsible for the design and display of jackets.
+If other information was to be displayed on jackets,
+then one could edit just this component -->
 <template>
   <div
     v-for="jacket in Jackets"
@@ -17,8 +22,12 @@
       <div class="feature-card-text-container">
         <p>{{ jacket.category }}</p>
         <h2>{{ jacket.name }}</h2>
-        <div>Stars</div>
-        <h3>${{ jacket.price }}.00</h3>
+        <div class="display-prices">
+          <h3 :class="{ 'strike-through': jacket.isOnSale }">
+            ${{ jacket.price }}.00
+          </h3>
+          <h3 v-if="jacket.isOnSale">${{ jacket.salePrice }}.00</h3>
+        </div>
       </div>
     </div>
   </div>
@@ -26,7 +35,7 @@
     <CardModal
       v-if="showModal"
       @close="showModal = false"
-      :product="newTest"
+      :product="modal"
       class="modal"
     />
   </transition>
@@ -46,17 +55,16 @@ export default defineComponent({
     CardIcons,
     CardModal,
   },
-  props: {
-    Dress: Object,
-  },
+
   data() {
     return {
       text: "QUICK VIEW",
       showModal: false,
-      newTest: {},
+      modal: {},
       Jackets: [] as Array<Jacket>,
     };
   },
+
   created() {
     DressService.getProducts("/GetJacket")
       .then((response) => {
@@ -69,8 +77,8 @@ export default defineComponent({
   },
 
   methods: {
-    showDetails(dress: Object) {
-      this.newTest = dress;
+    showDetails(jacket: Object) {
+      this.modal = jacket;
       this.showModal = true;
     },
   },
@@ -92,7 +100,6 @@ export default defineComponent({
   position: fixed;
   top: 50%;
   left: 50%;
-  /* bring your own prefixes */
   transform: translate(-50%, -50%);
   z-index: 999;
   height: 90vh;
@@ -170,6 +177,19 @@ export default defineComponent({
       font-size: 1.125rem;
       font-weight: 700;
     }
+  }
+
+  .display-prices {
+    display: flex;
+    justify-content: space-between;
+    justify-content: center;
+    h3 {
+      margin-right: 0.5rem;
+    }
+  }
+
+  .strike-through {
+    text-decoration: line-through;
   }
 }
 </style>

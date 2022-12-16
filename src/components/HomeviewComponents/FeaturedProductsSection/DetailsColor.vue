@@ -1,3 +1,6 @@
+<!-- SRP -- This component is responsble for the color logic/display on the product modal.
+Further logic should be implemented as of now the colors are hardcoded-->
+
 <template>
   <div class="box-container">
     <h1>Color:</h1>

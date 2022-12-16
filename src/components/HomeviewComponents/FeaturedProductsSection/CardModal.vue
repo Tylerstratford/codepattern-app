@@ -6,15 +6,27 @@
         <img class="img" :src="product?.imageUrl" />
       </div>
       <div class="details-information-container">
-        <h1 class="margin-bottom">{{ product?.ProductTitle }}</h1>
-        <h3 class="margin-bottom">SKU Brand</h3>
-        <p class="margin-bottom">STARS</p>
-        <p class="margin-bottom">${{ product?.ProductPrice }}.00</p>
-        <p class="product-information">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorum,
-          aperiam hic. Quis earum error quidem possimus ipsa doloremque repellat
-          amet. Voluptates, veritatis hic. Atque eveniet ipsam, ipsa quos
-        </p>
+        <h1 class="margin-bottom">{{ product?.name }}</h1>
+        <h3
+          v-if="product?.category === 'Dress'"
+          class="margin-bottom occasion-season"
+        >
+          {{ product?.occasions }}
+        </h3>
+        <h3
+          v-if="product?.category === 'Jacket'"
+          class="margin-bottom occasion-season"
+        >
+          {{ product?.season }}
+        </h3>
+
+        <div class="display-prices">
+          <h3 :class="{'strike-through' : product?.isOnSale}">${{ product?.price }}.00</h3>
+          <h3 class="margin-bottom on-sale" v-if="product?.isOnSale">
+          ${{ product?.salePrice }}.00
+          </h3>
+        </div>
+        <p class="product-information">{{ product?.description }}</p>
         <SizeComponent style="margin-bottom: 1rem" />
         <DetailsColor style="margin-bottom: 1rem" />
         <CardQuantity style="margin-bottom: 1rem" />
@@ -75,7 +87,7 @@ export default defineComponent({
   }
 }
 .margin-bottom {
-  margin-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
 }
 .details-container {
   display: flex;
@@ -123,4 +135,30 @@ export default defineComponent({
     transform: rotate(90deg);
   }
 }
+
+.occasion-season {
+  border: 2px solid rgb(29, 183, 230);
+  width: 25%;
+  text-align: center;
+  border-radius: 10px;
+  color: rgb(21, 125, 156);
+}
+
+.on-sale {
+  color: #157145;
+}
+
+.display-prices {
+  display: flex;
+  font-size: 1.5rem;
+  width: 25%;
+  justify-content: space-between;
+  h3 {
+    margin-right: 0.5rem;
+  }
+}
+
+.strike-through {
+    text-decoration: line-through;
+  }
 </style>

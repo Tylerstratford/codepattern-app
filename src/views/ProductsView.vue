@@ -1,3 +1,5 @@
+<!-- VALIDATION SHOULD BE ADDED -->
+
 <template>
   <div class="container">
     <h1>Add Product</h1>
@@ -198,6 +200,7 @@ export default defineComponent({
   },
 
   methods: {
+    //should be refactored if - category name "dress" >> || "jacket"
     onSubmit() {
       if (this.newProduct.categoryName === "Dress") {
         const newDress = {
@@ -312,7 +315,7 @@ export default defineComponent({
     .img {
       height: 100%;
       width: 100%;
-      object-fit: cover;
+      object-fit: contain;
     }
   }
 

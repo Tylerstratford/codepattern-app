@@ -1,3 +1,5 @@
+<!-- SRP -- This component is responsble for the quantity logic on the product modal.
+Further logic should be implemented as of now the counter just increases and decreases -->
 <template>
   <div class="box-container">
     <h1>Qty:</h1>
