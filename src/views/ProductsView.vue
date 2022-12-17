@@ -1,4 +1,5 @@
-<!-- VALIDATION SHOULD BE ADDED -->
+<!-- Further validation should be added
+Input cleaning should also be added -->
 
 <template>
   <div class="container">
@@ -81,12 +82,16 @@
 
       <div class="flex price-container">
         <div class="column">
-          <label>Price (number)</label>
+          <label>Price</label>
           <input
             v-model="newProduct.priceAmount"
             name="price"
             placeholder="Enter price"
+            @input="validateNumber"
           />
+          <p v-if="errorPrice == true" class="error">
+            Please enter a valid input
+          </p>
         </div>
         <div class="column select">
           <label>On sale?</label>
@@ -107,7 +112,11 @@
             v-model="newProduct.saleProcent"
             name="procent"
             placeholder="Enter procent"
+            @input="validateProcent"
           />
+          <p v-if="errorProcent == true" class="error">
+            Please enter a percent between 0 - 100
+          </p>
         </div>
       </div>
       <div class="flex">
@@ -128,11 +137,14 @@
           />
         </div>
       </div>
-      <StandardButton
+      <button
         type="submit"
         class="std-button-two"
-        :button-text="btnText"
-      />
+        :disabled="errorPrice || errorProcent"
+        :class="{ 'btn-disabled': errorPrice || errorProcent }"
+      >
+        Submit
+      </button>
     </form>
     <div class="image-container">
       <img
@@ -153,22 +165,19 @@
 
 <script lang="ts">
 import { defineComponent } from "@vue/runtime-core";
-import StandardButton from "@/components/Buttons/StandardButton.vue";
 import { Seasons } from "@/models/Seasons";
 import { Categories } from "@/models/CategoriesModel";
 import { Occasions } from "@/models/Occasions";
 import { isOnSale } from "@/models/Selected";
-import { reactive, toRaw } from "@vue/reactivity";
 import { dressModel } from "@/models/DressModel";
 import axios from "axios";
 export default defineComponent({
   name: "ProductsView",
-  components: {
-    StandardButton,
-  },
 
   data() {
     return {
+      errorProcent: false,
+      errorPrice: false,
       btnText: "Submit",
       Seasons: Seasons,
       Season: null,
@@ -200,6 +209,37 @@ export default defineComponent({
   },
 
   methods: {
+    getButtonDisabled() {
+      return this.errorPrice || this.errorProcent;
+    },
+    validateNumber(event: Event) {
+      const value = (event.target as HTMLInputElement).value;
+
+      if (!Number.isNaN(parseFloat(value)) && parseFloat(value) >= 0) {
+        this.newProduct.priceAmount = parseFloat(value);
+        this.errorPrice = false;
+        console.log(this.errorPrice);
+      } else {
+        this.errorPrice = true;
+        console.log(this.errorPrice);
+      }
+    },
+
+    validateProcent(event: Event) {
+      const value = (event.target as HTMLInputElement).value;
+      if (
+        !Number.isNaN(parseFloat(value)) &&
+        parseFloat(value) >= 0 &&
+        parseFloat(value) <= 100
+      ) {
+        this.newProduct.saleProcent = parseFloat(value);
+        this.errorProcent = false;
+        console.log(`procent ${this.errorProcent}`);
+      } else {
+        this.errorProcent = true;
+        console.log(`procent ${this.errorProcent}`);
+      }
+    },
     //should be refactored if - category name "dress" >> || "jacket"
     onSubmit() {
       if (this.newProduct.categoryName === "Dress") {
@@ -393,5 +433,44 @@ li {
 
 select {
   cursor: pointer;
+}
+
+.error {
+  color: red;
+  font-size: 0.8rem;
+}
+
+.std-button-two {
+  background-color: black;
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  outline: none;
+  border: none;
+  width: 188px;
+  height: 60px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    font-size: 1.1rem;
+    background-color: rgba(0, 0, 0, 0.553);
+  }
+}
+
+.btn-disabled {
+  cursor: not-allowed;
+  background-color: rgb(238, 132, 132);
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  outline: none;
+  border: none;
+  width: 188px;
+  height: 60px;
+  &:hover {
+    font-size: 1rem;
+    background-color: rgb(238, 132, 132);
+  }
 }
 </style>
