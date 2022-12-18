@@ -46,7 +46,7 @@ import { defineComponent } from "vue";
 import StandardButton from "@/components/Buttons/StandardButton.vue";
 import CardIcons from "@/components/HomeviewComponents/FeaturedProductsSection/CardIcons.vue";
 import CardModal from "@/components/HomeviewComponents/FeaturedProductsSection/CardModal.vue";
-import DressService from "@/Services/DressService";
+import DressService from "@/Services/GetProducts";
 import { Jacket } from "@/models/interfaces/IJacket";
 export default defineComponent({
   name: "Card",

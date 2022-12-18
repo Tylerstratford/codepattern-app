@@ -1,5 +1,7 @@
 <!-- Further validation should be added
 Input cleaning should also be added -->
+<!-- SRP Creates a product Dress or Jacket -->
+<!-- OCP Difficult here, as it is a form however, little code would ne required to add further products-->
 
 <template>
   <div class="container">
@@ -169,8 +171,7 @@ import { Seasons } from "@/models/Seasons";
 import { Categories } from "@/models/CategoriesModel";
 import { Occasions } from "@/models/Occasions";
 import { isOnSale } from "@/models/Selected";
-import { dressModel } from "@/models/DressModel";
-import axios from "axios";
+import { createProduct } from "@/Services/CreateProduct";
 export default defineComponent({
   name: "ProductsView",
 
@@ -204,7 +205,6 @@ export default defineComponent({
       imgUrl: "",
       placeHolderImgUrl:
         "https://i.pinimg.com/originals/86/c0/8b/86c08b1adc64b6a3b2a0476ffc15ff3b.jpg",
-      dressProduct: dressModel,
     };
   },
 
@@ -218,10 +218,8 @@ export default defineComponent({
       if (!Number.isNaN(parseFloat(value)) && parseFloat(value) >= 0) {
         this.newProduct.priceAmount = parseFloat(value);
         this.errorPrice = false;
-        console.log(this.errorPrice);
       } else {
         this.errorPrice = true;
-        console.log(this.errorPrice);
       }
     },
 
@@ -234,14 +232,11 @@ export default defineComponent({
       ) {
         this.newProduct.saleProcent = parseFloat(value);
         this.errorProcent = false;
-        console.log(`procent ${this.errorProcent}`);
       } else {
         this.errorProcent = true;
-        console.log(`procent ${this.errorProcent}`);
       }
     },
-    //should be refactored if - category name "dress" >> || "jacket"
-    onSubmit() {
+    onSubmit(): void {
       if (this.newProduct.categoryName === "Dress") {
         const newDress = {
           name: this.newProduct.productName,
@@ -255,22 +250,7 @@ export default defineComponent({
           size: this.newProduct.size,
           color: this.newProduct.color,
         };
-        axios
-          .post(
-            "https://localhost:7187/api/CreateDress",
-            JSON.stringify(newDress),
-            {
-              headers: {
-                "Content-Type": "application/json",
-              },
-            }
-          )
-          .then((response) => {
-            console.log(response);
-          })
-          .catch((error) => {
-            console.log(error);
-          });
+        createProduct(newDress);
       }
 
       if (this.newProduct.categoryName === "Jacket") {
@@ -287,22 +267,7 @@ export default defineComponent({
           color: this.newProduct.color,
         };
 
-        axios
-          .post(
-            "https://localhost:7187/api/CreateJacket",
-            JSON.stringify(newJacket),
-            {
-              headers: {
-                "Content-Type": "application/json",
-              },
-            }
-          )
-          .then((response) => {
-            console.log(response);
-          })
-          .catch((error) => {
-            console.log(error);
-          });
+        createProduct(newJacket);
       }
 
       this.newProduct = {
