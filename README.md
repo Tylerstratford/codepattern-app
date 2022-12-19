@@ -2,8 +2,7 @@
 ```
 to run the app, npm start
 ```
-```
-Features:
+## Features:
 ```
 ```
 *Calling data from the API
