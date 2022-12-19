@@ -3,7 +3,8 @@
 to run the app, npm start
 ```
 ## Features:
-*Calling data from the API
+```
+*Calling data from the API <br>
 *Creating two different product types and storing them in the database
 ```
 
