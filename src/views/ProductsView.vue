@@ -124,19 +124,27 @@ Input cleaning should also be added -->
       <div class="flex">
         <div class="column short-inputs">
           <label>Size</label>
-          <input
-            v-model="newProduct.size"
-            name="size"
-            placeholder="Enter any size"
-          />
+          <select v-model="newProduct.size">
+            <option
+              v-for="size in Sizes"
+              :key="size.id"
+              :value="newProduct.size"
+            >
+              {{ size.size }}
+            </option>
+          </select>
         </div>
         <div class="column short-inputs">
           <label>Color</label>
-          <input
-            v-model="newProduct.color"
-            name="color"
-            placeholder="Enter color"
-          />
+          <select v-model="newProduct.color">
+            <option
+              v-for="color in Colors"
+              :key="color.id"
+              :value="newProduct.color"
+            >
+              {{ color.color }}
+            </option>
+          </select>
         </div>
       </div>
       <button
@@ -172,6 +180,8 @@ import { Categories } from "@/models/CategoriesModel";
 import { Occasions } from "@/models/Occasions";
 import { isOnSale } from "@/models/Selected";
 import { createProduct } from "@/Services/CreateProduct";
+import { Sizes } from "@/models/SizeModel";
+import { Colors } from "@/models/Colors";
 export default defineComponent({
   name: "ProductsView",
 
@@ -182,6 +192,10 @@ export default defineComponent({
       btnText: "Submit",
       Seasons: Seasons,
       Season: null,
+      Sizes: Sizes,
+      Size: null,
+      Colors: Colors,
+      Color: null,
       Categories: Categories,
       Category: null,
       Occasions: Occasions,

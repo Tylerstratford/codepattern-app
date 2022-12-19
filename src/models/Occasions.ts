@@ -1,5 +1,5 @@
 import { OccasionsInterface } from "./interfaces/IOccasion";
-export const Occasions: Array<OccasionsInterface>= [
+export const Occasions: Array<OccasionsInterface> = [
   {
     id: 1,
     occasion: "Casual",
