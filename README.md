@@ -1,4 +1,8 @@
 # code-patterns-app
+to run the app, npm start
+Features:
+*Calling data from the API
+*Creating two different product types and storing them in the database
 
 ## Project setup
 ```
