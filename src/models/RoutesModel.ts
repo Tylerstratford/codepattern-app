@@ -1,7 +1,7 @@
+//SRP - Responsible for the implementation of the routes, using the Routes interface
+
 import { Routes } from "@/models/interfaces/IRoutes";
 
-
-//Add routes here:
 export const UserRoute: Array<Routes> = [
   {
     routeId: 1,

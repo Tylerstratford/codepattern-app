@@ -1,3 +1,6 @@
+<!-- SRP -  Just displaying the categories page with little content. This of course should be developed -->
+
+
 <template>
   <div class="categories-container">
     <div class="left">

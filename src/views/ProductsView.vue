@@ -2,6 +2,9 @@
 Input cleaning should also be added -->
 <!-- SRP Creates a product Dress or Jacket -->
 <!-- OCP Difficult here, as it is a form however, little code would ne required to add further products-->
+<!-- DIP is being fulfill when calling the createProduct, changing the product or changing the library used wont affect the code -->
+<!-- The submit method does not really fulfill SRP as it will create whatever and how every many products the user puts into it. but I felt for this website
+      that it is okay -->
 
 <template>
   <div class="container">
@@ -213,7 +216,6 @@ export default defineComponent({
         size: "",
         color: "",
       },
-      newJacket: {},
       onSale: isOnSale,
       OnSale: null,
       imgUrl: "",
@@ -250,6 +252,7 @@ export default defineComponent({
         this.errorProcent = true;
       }
     },
+
     onSubmit(): void {
       if (this.newProduct.categoryName === "Dress") {
         const newDress = {

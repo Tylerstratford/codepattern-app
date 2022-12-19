@@ -1,3 +1,6 @@
+<!-- Displaying the landing or home page of the website. 
+    In a sense this follows SRP - as it is responsible for displaying the home page and it utilizes components so that the code is clean -->
+
 <template>
 <HomeviewSectionOneParentComponent />
 <HomeviewSectionTwoParentComponent />

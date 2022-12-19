@@ -109,7 +109,6 @@ export default defineComponent({
 }
 
 .details-information-container {
-  /* border: 1px solid purple; */
   width: 50%;
 
   .product-information {
@@ -121,9 +120,9 @@ export default defineComponent({
 
 .modal-container {
   width: 75%;
-  /* height: 150%; */
   background: rgba(255, 255, 255, 0.95);
   padding: 1rem;
+  border: 1px solid rgb(233, 228, 228);
 }
 
 .close-icon {

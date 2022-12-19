@@ -1,6 +1,9 @@
-import { colorsInterface } from "./interfaces/IColors";
+//SRP - Responsible for the implementation of colors, using ColorsInterface
 
-export const Colors: Array<colorsInterface> = [
+
+import { ColorsInterface } from "./interfaces/IColors";
+
+export const Colors: Array<ColorsInterface> = [
   { id: 1, color: "White" },
   { id: 2, color: "Black" },
   { id: 3, color: "Red" },

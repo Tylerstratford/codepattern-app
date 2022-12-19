@@ -1,3 +1,5 @@
+//SRP - Responsible for the implementation of colors, using OccasionsInterface
+
 import { OccasionsInterface } from "./interfaces/IOccasion";
 export const Occasions: Array<OccasionsInterface> = [
   {

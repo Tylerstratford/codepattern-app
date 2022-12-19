@@ -1,3 +1,5 @@
+<!-- SRP Component for the logo placed top left of the Navbar -->
+
 <template>
     <div style="width:15%;">
       <h1>Fixxo.</h1>

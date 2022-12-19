@@ -1,3 +1,4 @@
+<!-- SRP - A container for the navbar components. I did it like this as a way of organizing the navbar content -->
 <template>
   <div class="navbar-background">
     <div class="navbar-container">

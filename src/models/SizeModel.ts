@@ -1,3 +1,5 @@
+//SRP - Responsible for the implementation of sizes, using SizeInterface
+
 import { SizeInterface } from "./interfaces/ISize";
 
 export const Sizes: Array<SizeInterface> = [

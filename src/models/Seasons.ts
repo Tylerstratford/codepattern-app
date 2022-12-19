@@ -1,3 +1,6 @@
+//SRP - Responsible for the implementation of the seasons, using SeasonsInterface
+
+
 import { SeasonsInterface } from "./interfaces/ISeasons"
 export const Seasons: Array<SeasonsInterface> = [
     {

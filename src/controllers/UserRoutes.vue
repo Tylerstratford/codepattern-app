@@ -1,3 +1,6 @@
+<!-- SRP - This component displays the different routes to the website along with their working paths. 
+    I did it like this as I thought it was nice to have a file with all of the routes/paths for the navbar
+    that can easily be looped through -->
 <template>
   <div class="links-contianer">
     <nav v-for="route in routes" :key="route.routeId">

@@ -1,3 +1,4 @@
+<!-- SRP - A grouping of the NavbarSocialIcon used to display different icons in the navbar -->
 <template>
   <div class="social-icons-container">
     <NavbarSocialIcon icon="teenyicons:search-outline" />

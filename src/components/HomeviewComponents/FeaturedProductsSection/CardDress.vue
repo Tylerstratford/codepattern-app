@@ -44,8 +44,9 @@ import { defineComponent } from "vue";
 import StandardButton from "@/components/Buttons/StandardButton.vue";
 import CardIcons from "@/components/HomeviewComponents/FeaturedProductsSection/CardIcons.vue";
 import CardModal from "@/components/HomeviewComponents/FeaturedProductsSection/CardModal.vue";
-import DressService from "@/Services/GetProducts";
-import { Dress } from "@/models/interfaces/IDress";
+import { GetProductsService } from "@/Services/GetProducts";
+import { DressInterface } from "@/models/interfaces/IDress";
+import { createAxiosHTTPClient } from "@/models/interfaces/HttpClient";
 export default defineComponent({
   name: "Card",
   components: {
@@ -63,18 +64,19 @@ export default defineComponent({
       text: "QUICK VIEW",
       showModal: false,
       modal: {},
-      Dresses: [] as Array<Dress>,
+      Dresses: [] as Array<DressInterface>,
     };
   },
   created() {
-    DressService.getProducts("/GetDress")
-      .then((response) => {
-        this.Dresses = response.data;
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    const getDressService = GetProductsService(createAxiosHTTPClient());
+    getDressService.getProducts("/GetDress")
+    .then((response) => {
+      this.Dresses = response.data;
+      console.log(response.data)
+    })
+    .catch((error) => {
+      console.log(error)
+    })
   },
 
   methods: {

@@ -1,3 +1,5 @@
+<!-- SRP Reusable "icon" that can be use throughout the website
+      OCP - Also OCP as one can extend this to other partts of the website and edit what Icon is used -->
 <template>
   <div class="circle">
     <Icon class="navbar-icons" :icon="icon" />

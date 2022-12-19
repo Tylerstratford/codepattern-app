@@ -1,3 +1,6 @@
+//SRP - Responsible for the implementation of categories, using CategoriesInterface
+
+
 import { CategoriesInterface } from "@/models/interfaces/ICategories"
 
 export const Categories: Array<CategoriesInterface> = [

@@ -1,3 +1,4 @@
+// SRP - handling routes. These could be placed wihtin their own files, but I felt that it was unncessary
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 

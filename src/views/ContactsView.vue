@@ -1,3 +1,5 @@
+<!-- SRP -  Just displaying the contacts page with little content. This of course should be developed -->
+
 <template>
   <div class="contacts-container">
     <h1>Contacts</h1>
