@@ -4,23 +4,21 @@ Further logic should be implemented as of now the colors are hardcoded-->
 <template>
   <div class="box-container">
     <h1>Color:</h1>
-      <select class="select"  v-model="selected">
-        {{selected}}
-        <option>Red</option>
-        <option>Navy</option>
-        <option>Lavender</option>
-        <option>...</option>
+      <select class="select">
+        <option v-for="color in Colors" :key="color.id">{{color.color}}</option>
+
       </select>
     </div>
 </template>
 
 <script lang="ts">
+import { Colors } from "@/models/Colors";
 import { defineComponent } from "vue";
 export default defineComponent({
   name: "DetailsColor",
   data() {
     return {
-      selected: "",
+      Colors: Colors,
     };
   },
 });

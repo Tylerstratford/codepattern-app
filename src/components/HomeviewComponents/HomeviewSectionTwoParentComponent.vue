@@ -1,3 +1,5 @@
+<!-- SRP - This component is responsible for displaying the second showcase displayed on the website. It incorporates several other
+      components making the code easier to read -->
 <template>
   <div class="homeview-section-two-container">
     <div class="section-two-left">
@@ -7,7 +9,7 @@
           Up to 70% Off!
         </h1>
         <h4>
-          {{leftBoxText}}
+          {{ leftBoxText }}
         </h4>
         <StandardButton class="std-button-two" :buttonText="text" />
       </div>

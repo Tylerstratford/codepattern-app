@@ -1,3 +1,5 @@
+<!-- SRP - This component is responsible for displaying the first showcase displayed on the website. It incorporates several other
+      components making the code easier to read -->
 <template>
     <div class="homeView-background">
       <div class="homeView-container">

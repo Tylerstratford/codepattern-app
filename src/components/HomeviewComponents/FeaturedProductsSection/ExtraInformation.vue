@@ -1,3 +1,5 @@
+<!-- SRP -- This component is responsble for the color logic/display on the product modal -  The information listed at the bottom of the modal.
+Further logic/implementation as of now the text are hardcoded-->
 <template>
   <div class="details">
     <h1

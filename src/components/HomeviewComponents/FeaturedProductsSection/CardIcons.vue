@@ -1,3 +1,5 @@
+<!-- Component for the layout/design of the icons displayed on the product curds when hovering -->
+
 <template>
   <div class="feature-product-card-icons-container">
     <NavbarSocialIcon class="icons" icon="bi:suit-heart" />

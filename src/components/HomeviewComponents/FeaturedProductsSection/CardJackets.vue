@@ -1,4 +1,4 @@
-<!-- SRP -- This component is almost identical to CardJackets,
+<!-- SRP -- This component is almost identical to CardDress,
   however I felt that this was okay to keep within the lines of SRP. 
 This component is responsible for the design and display of jackets.
 If other information was to be displayed on jackets,

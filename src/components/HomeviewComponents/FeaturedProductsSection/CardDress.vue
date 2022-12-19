@@ -1,7 +1,7 @@
 <!-- SRP -- This component is almost identical to CardJackets,
   however I felt that this was okay to keep within the lines of SRP
   This component is responsible for the design and display of dresses
-If other information was to be displayed on jackets,
+If other information was to be displayed on dresses,
 then one could edit just this component -->
 
 <template>

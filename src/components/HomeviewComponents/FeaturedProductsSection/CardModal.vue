@@ -1,3 +1,5 @@
+<!-- SRP - Responsible for the popout modal when clicking on an individual product - display and design of that particular product  -->
+
 <template>
   <div class="modal-container">
     <Icon @click="closeModal" class="close-icon" icon="carbon:close" />

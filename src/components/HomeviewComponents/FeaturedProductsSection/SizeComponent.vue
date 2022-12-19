@@ -1,3 +1,6 @@
+<!-- SRP -- This component is responsble for the size logic/display on the product modal.
+Further logic should be implemented as of now the sizes are hardcoded-->
+
 <template>
   <div class="box-container">
     <h1>Size:</h1>

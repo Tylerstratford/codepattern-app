@@ -1,3 +1,6 @@
+<!-- SRP -  This component is responsible for containing the card and jacket products that will be displayed.
+            The component provides the layout and the position of where these two components will be displayed -->
+            
 <template>
   <div class="featured-product-container">
     <h1>Featured Dresses</h1>
@@ -16,7 +19,6 @@
 import { defineComponent } from "vue";
 import CardDress from "@/components/HomeviewComponents/FeaturedProductsSection/CardDress.vue";
 import CardJackets from "@/components/HomeviewComponents/FeaturedProductsSection/CardJackets.vue";
-import { Dress } from "@/models/interfaces/IDress";
 
 export default defineComponent({
   name: "ParentComponent",

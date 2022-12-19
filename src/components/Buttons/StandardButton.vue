@@ -1,3 +1,6 @@
+<!-- SRP A standard button that can be imported and reused throughout the App.  -->
+<!-- OCP - This component can even be extended and restyled once imported -->
+
 <template>
   <button>{{ buttonText }}</button>
 </template>
@@ -20,8 +23,6 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-/* style-open: Define parameters in imported component
-requires class name: std-button-open */
 .std-button-open {
   cursor: pointer;
   color: v-bind(color);
