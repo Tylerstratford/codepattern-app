@@ -4,8 +4,9 @@ to run the app, npm start
 ```
 ## Features:
 ```
-*Calling data from the API
-*Creating two different product types and storing them in the database
+* Following SOLID & MVC design Principles
+* Retrieving data/products and displaying from the API
+* Creating two different product types and storing them in the database
 ```
 
 ## Project setup
